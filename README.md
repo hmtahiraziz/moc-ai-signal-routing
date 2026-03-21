@@ -4,9 +4,11 @@ This repository implements `AI_SIGNAL_ROUTING` with strict MOC contracts, requir
 
 ## Current Repository Structure
 
+- `io/`
+  - `file-writer.ts` (generic artifact/proof file writing utilities)
 - `src/`
   - module implementation (`controller`, `service`, `module`, `interfaces`)
-  - `main.ts` prints proof for valid + invalid cases
+  - `main.ts` executes scenarios and delegates all writing to `io/file-writer.ts`
 - `examples/`
   - `input.json`
   - `expected_output.json`
@@ -16,6 +18,8 @@ This repository implements `AI_SIGNAL_ROUTING` with strict MOC contracts, requir
 - `logs/` (generated on every `npm run start`)
   - `valid_case_logs.json`
   - `invalid_case_logs.json`
+- `proof/` (generated on every `npm run start`)
+  - `single_flow_proof.json` (all scenarios in one file: input -> output -> logs)
 - `test/`
   - `ai-signal-routing.scenarios.spec.ts`
   - `logs/` (generated on every `npm test`)
@@ -58,6 +62,14 @@ npm run start
   - `outputs/invalid_case_output.json`
   - `logs/valid_case_logs.json`
   - `logs/invalid_case_logs.json`
+  - `proof/single_flow_proof.json`
+
+`proof/single_flow_proof.json` is dynamic and includes all scenario cases with:
+
+- `caseType` (derived from input/output: `success`, `failed_route`, `default`, `failure`)
+- `input`
+- `output`
+- `logs`
 
 ## Test
 
@@ -87,4 +99,6 @@ Each `npm test` run also updates:
 - `test/outputs/execution_failed_output.json`
 - `test/outputs/default_route_output.json`
 - `test/outputs/invalid_missing_type_output.json`
+- `proof/single_flow_proof.json` (same all-scenarios consolidated proof)
 
+Optional: generate Vitest run artifacts:

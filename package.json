@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/main.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "start": "ts-node src/main.ts",
+    "build": "node init && tsc -p tsconfig.json",
+    "start": "node init && ts-node src/main.ts",
     "test": "vitest run"
   },
   "keywords": [],
@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^25.5.0",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^3.3.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },

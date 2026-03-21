@@ -1,5 +1,5 @@
-node_modules/
-dist/
+/node_modules
+/dist
 build/
 coverage/
 
@@ -9,12 +9,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-.env
-.env.*
 !.env.example
 
 .DS_Store
 Thumbs.db
 
-.vscode/
 .idea/
+config.bat
