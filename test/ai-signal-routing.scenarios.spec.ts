@@ -1,12 +1,15 @@
-import { describe, expect, it } from "vitest";
-import { mkdirSync, writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { afterAll, describe, expect, it } from "vitest";
 import { AiSignalRoutingService } from "../src/ai-signal-routing/ai-signal-routing.service";
 import {
   AiSignalRoutingInput,
   AiSignalRoutingOutput,
   ModuleLog,
 } from "../src/ai-signal-routing/interfaces";
+import {
+  buildScenarioCase,
+  writeJsonFile,
+  writeSingleFlowProof,
+} from "../io/file-writer";
 
 const baseInput: AiSignalRoutingInput = {
   moduleName: "AI_SIGNAL_ROUTING",
@@ -47,20 +50,30 @@ function assertRequiredLogs(traceId: string, logs: ModuleLog[]): void {
 }
 
 function saveScenarioLogs(fileName: string, logs: ModuleLog[]): void {
-  const logsDir = resolve(process.cwd(), "test/logs");
-  mkdirSync(logsDir, { recursive: true });
-  const outputPath = resolve(logsDir, fileName);
-  writeFileSync(outputPath, JSON.stringify(logs, null, 2));
+  writeJsonFile("test/logs", fileName, logs);
 }
 
 function saveScenarioOutput(
   fileName: string,
   output: AiSignalRoutingOutput,
 ): void {
-  const outputsDir = resolve(process.cwd(), "test/outputs");
-  mkdirSync(outputsDir, { recursive: true });
-  const outputPath = resolve(outputsDir, fileName);
-  writeFileSync(outputPath, JSON.stringify(output, null, 2));
+  writeJsonFile("test/outputs", fileName, output);
+}
+
+function saveAllScenariosProof(): void {
+  const service = new AiSignalRoutingService();
+
+  const scenarios = [
+    { input: makeInput("EXECUTION_SUCCESS") },
+    { input: makeInput("EXECUTION_FAILED") },
+    { input: makeInput("UNKNOWN_EVENT") },
+    { input: makeInput(undefined) },
+  ].map((item) => {
+    const result = service.execute(item.input);
+    return buildScenarioCase(item.input, result);
+  });
+
+  writeSingleFlowProof(scenarios);
 }
 
 describe("AI_SIGNAL_ROUTING scenarios", () => {
@@ -126,4 +139,8 @@ describe("AI_SIGNAL_ROUTING scenarios", () => {
     saveScenarioLogs("invalid_missing_type_logs.json", logs);
     saveScenarioOutput("invalid_missing_type_output.json", output);
   });
+});
+
+afterAll(() => {
+  saveAllScenariosProof();
 });

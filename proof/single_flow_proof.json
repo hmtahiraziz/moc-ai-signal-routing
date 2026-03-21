@@ -1,0 +1,220 @@
+{
+  "flow": "input -> output -> logs",
+  "cases": [
+    {
+      "caseType": "success",
+      "input": {
+        "moduleName": "AI_SIGNAL_ROUTING",
+        "sourceId": "test-source",
+        "entityId": "entity-001",
+        "timestamp": "2026-03-21T10:00:00Z",
+        "status": "success",
+        "traceId": "trace-test-001",
+        "metadata": {},
+        "payload": {
+          "type": "EXECUTION_SUCCESS"
+        }
+      },
+      "output": {
+        "moduleName": "AI_SIGNAL_ROUTING",
+        "sourceId": "test-source",
+        "entityId": "entity-001",
+        "timestamp": "2026-03-21T17:24:27.227Z",
+        "status": "success",
+        "traceId": "trace-test-001",
+        "metadata": {},
+        "result": {
+          "targetModule": "NEXT_MODULE"
+        }
+      },
+      "logs": [
+        {
+          "event": "RECEIVE_INPUT",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "PROCESS_START",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "PROCESS_COMPLETE",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "RETURN_OUTPUT",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        }
+      ]
+    },
+    {
+      "caseType": "failed_route",
+      "input": {
+        "moduleName": "AI_SIGNAL_ROUTING",
+        "sourceId": "test-source",
+        "entityId": "entity-001",
+        "timestamp": "2026-03-21T10:00:00Z",
+        "status": "success",
+        "traceId": "trace-test-001",
+        "metadata": {},
+        "payload": {
+          "type": "EXECUTION_FAILED"
+        }
+      },
+      "output": {
+        "moduleName": "AI_SIGNAL_ROUTING",
+        "sourceId": "test-source",
+        "entityId": "entity-001",
+        "timestamp": "2026-03-21T17:24:27.227Z",
+        "status": "success",
+        "traceId": "trace-test-001",
+        "metadata": {},
+        "result": {
+          "targetModule": "AUDIT_MODULE"
+        }
+      },
+      "logs": [
+        {
+          "event": "RECEIVE_INPUT",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "PROCESS_START",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "PROCESS_COMPLETE",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "RETURN_OUTPUT",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        }
+      ]
+    },
+    {
+      "caseType": "default",
+      "input": {
+        "moduleName": "AI_SIGNAL_ROUTING",
+        "sourceId": "test-source",
+        "entityId": "entity-001",
+        "timestamp": "2026-03-21T10:00:00Z",
+        "status": "success",
+        "traceId": "trace-test-001",
+        "metadata": {},
+        "payload": {
+          "type": "UNKNOWN_EVENT"
+        }
+      },
+      "output": {
+        "moduleName": "AI_SIGNAL_ROUTING",
+        "sourceId": "test-source",
+        "entityId": "entity-001",
+        "timestamp": "2026-03-21T17:24:27.227Z",
+        "status": "success",
+        "traceId": "trace-test-001",
+        "metadata": {},
+        "result": {
+          "targetModule": "DEFAULT_MODULE"
+        }
+      },
+      "logs": [
+        {
+          "event": "RECEIVE_INPUT",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "PROCESS_START",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "PROCESS_COMPLETE",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "RETURN_OUTPUT",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        }
+      ]
+    },
+    {
+      "caseType": "failure",
+      "input": {
+        "moduleName": "AI_SIGNAL_ROUTING",
+        "sourceId": "test-source",
+        "entityId": "entity-001",
+        "timestamp": "2026-03-21T10:00:00Z",
+        "status": "success",
+        "traceId": "trace-test-001",
+        "metadata": {},
+        "payload": {}
+      },
+      "output": {
+        "moduleName": "AI_SIGNAL_ROUTING",
+        "sourceId": "test-source",
+        "entityId": "entity-001",
+        "timestamp": "2026-03-21T17:24:27.227Z",
+        "status": "failure",
+        "traceId": "trace-test-001",
+        "metadata": {},
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Invalid input: payload.type is required",
+          "details": {
+            "field": "payload.type",
+            "issue": "required"
+          }
+        }
+      },
+      "logs": [
+        {
+          "event": "RECEIVE_INPUT",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "PROCESS_START",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "PROCESS_COMPLETE",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        },
+        {
+          "event": "RETURN_OUTPUT",
+          "module": "AI_SIGNAL_ROUTING",
+          "traceId": "trace-test-001",
+          "timestamp": "2026-03-21T17:24:27.227Z"
+        }
+      ]
+    }
+  ]
+}
