@@ -1,0 +1,17 @@
+{
+  "moduleName": "AI_SIGNAL_ROUTING",
+  "sourceId": "test-source",
+  "entityId": "entity-001",
+  "timestamp": "2026-03-21T16:12:39.930Z",
+  "status": "failure",
+  "traceId": "trace-test-001",
+  "metadata": {},
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid input: payload.type is required",
+    "details": {
+      "field": "payload.type",
+      "issue": "required"
+    }
+  }
+}

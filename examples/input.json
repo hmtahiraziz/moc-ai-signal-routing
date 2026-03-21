@@ -1,0 +1,12 @@
+{
+  "moduleName": "AI_SIGNAL_ROUTING",
+  "sourceId": "test-source",
+  "entityId": "entity-001",
+  "timestamp": "2026-03-21T10:00:00Z",
+  "status": "success",
+  "traceId": "trace-test-001",
+  "metadata": {},
+  "payload": {
+    "type": "EXECUTION_FAILED"
+  }
+}

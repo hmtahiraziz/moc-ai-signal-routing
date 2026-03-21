@@ -1,5 +1,7 @@
 import { AiSignalRoutingModule } from "./ai-signal-routing/ai-signal-routing.module";
 import { AiSignalRoutingInput } from "./ai-signal-routing/interfaces";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 const moduleRef = new AiSignalRoutingModule();
 
@@ -29,6 +31,28 @@ const invalidInput: AiSignalRoutingInput = {
 
 const validResult = moduleRef.controller.handle(validInput);
 const invalidResult = moduleRef.controller.handle(invalidInput);
+
+const logsDir = resolve(process.cwd(), "logs");
+mkdirSync(logsDir, { recursive: true });
+writeFileSync(
+  resolve(logsDir, "valid_case_logs.json"),
+  JSON.stringify(validResult.logs, null, 2),
+);
+writeFileSync(
+  resolve(logsDir, "invalid_case_logs.json"),
+  JSON.stringify(invalidResult.logs, null, 2),
+);
+
+const outputsDir = resolve(process.cwd(), "outputs");
+mkdirSync(outputsDir, { recursive: true });
+writeFileSync(
+  resolve(outputsDir, "valid_case_output.json"),
+  JSON.stringify(validResult.output, null, 2),
+);
+writeFileSync(
+  resolve(outputsDir, "invalid_case_output.json"),
+  JSON.stringify(invalidResult.output, null, 2),
+);
 
 console.log(
   JSON.stringify(

@@ -1,0 +1,12 @@
+{
+  "moduleName": "AI_SIGNAL_ROUTING",
+  "sourceId": "test-source",
+  "entityId": "entity-001",
+  "timestamp": "ISO",
+  "status": "success",
+  "traceId": "trace-test-001",
+  "metadata": {},
+  "result": {
+    "targetModule": "AUDIT_MODULE"
+  }
+}
